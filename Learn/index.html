@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f7f7f7;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 900px;
+            height: 250px;
+            margin-top: 50px;
+        }
+
+        .container .item {
+            background-color: #fff;
+            width: 270px;
+            height: 250px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            perspective: 1500px;
+            transition: transform 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .item:hover {
+            transform: rotateY(10deg) rotateX(10deg);
+        }
+
+        .item .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .item:hover .content {
+            transform: translateY(-10px);
+        }
+
+        .item .content h3 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .item .content p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .item .content a {
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .item .content a:hover {
+            background-color: #2980b9;
+        }
+
+        .item:nth-child(1) {
+            background-color: #f2f2f2;
+        }
+
+        .item:nth-child(2) {
+            background-color: #e9f7fb;
+        }
+
+        .item:nth-child(3) {
+            background-color: #fff9e6;
+        }
+
+        #back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: transparent;
+            border: 2px solid red;
+            border-radius: 10px;
+            text-decoration: none;
+            color: red;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #back-btn:hover {
+            background-color: red;
+            color: #fff;
+        }
+
+        @media screen and (max-width: 920px) {
+            .container{
+                flex-direction: column;
+                gap: 20px;
+                position: relative;
+                bottom: 9rem
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Back Button -->
+    <a id="back-btn" href="#" onclick="backTab()">Back</a>
+
+    <div class="container">
+        <!-- HTML Card -->
+        <div class="item">
+            <div class="content">
+                <h3>HTML</h3>
+                <p>Master the structure of web pages and build strong foundations in HTML.</p>
+                <a href="HTML/index.html">Learn HTML</a>
+            </div>
+        </div>
+
+        <!-- CSS Card -->
+        <div class="item">
+            <div class="content">
+                <h3>CSS</h3>
+                <p>Design and style your web pages to make them beautiful and responsive.</p>
+                <a href="CSS/index.html">Learn CSS</a>
+            </div>
+        </div>
+
+        <!-- JavaScript Card -->
+        <div class="item">
+            <div class="content">
+                <h3>JavaScript</h3>
+                <p>Learn to add interactivity and dynamic functionality to your websites.</p>
+                <a href="JS/index.html">Learn JS</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+           function backTab() {
+                window.history.back();
+           }
+    </script>
+
+</body>
+</html>

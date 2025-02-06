@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Quiz</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1C2B39;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .quiz-container {
+      background-color: #243447;
+      width: 90%;
+      max-width: 600px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      text-align: left;
+      height: 520px;
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .quiz-header h1 {
+      font-size: 20px;
+    }
+
+    .quiz-question {
+      margin-bottom: 20px;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .quiz-option {
+      background-color: #344557;
+      padding: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: left;
+      transition: background-color 0.3s;
+    }
+
+    .quiz-option:hover {
+      background-color: #4A617C;
+    }
+
+    .submit-button {
+      background-color: #6F4AE0;
+      color: white;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 16px;
+      width: 100%;
+      position: relative;
+      top: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    #back-btn{
+        border: solid 1px red;
+        padding: 10px;
+        border-radius: 10px;
+        transition: 0.5s;
+        color: #fff;
+    }
+
+    #back-btn:hover{
+        background-color: red;
+    }
+
+    @media screen and (max-width: 300px) {
+        .quiz-container{
+            height: 560px;
+        }
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <h1>JavaScript Quiz</h1>
+      <a id="back-btn" onclick="backTab()" href="#">Back</a>
+    </div>
+    <hr>
+    <div class="quiz-question">
+      <p><strong id="question-counter">Question 1 of 20</strong></p>
+      <h2 id="question-text">What does JavaScript stand for?</h2>
+    </div>
+    <div class="quiz-options">
+      <div class="quiz-option" data-answer="correct">A. Java Syntax</div>
+      <div class="quiz-option" data-answer="wrong">B. Just a Simple Text</div>
+      <div class="quiz-option" data-answer="wrong">C. JavaScript Is Simple Task</div>
+      <div class="quiz-option" data-answer="wrong">D. Java Super Text</div>
+    </div>
+    <button class="submit-button" id="submit-button">Submit answer</button>
+  </div>
+
+  <script>
+   const questions = [
+    {
+      question: "What will the following code return: Boolean(10 > 9)",
+      options: [
+        { text: "A. true", correct: true },
+        { text: "B. false", correct: false },
+        { text: "C. null", correct: false },
+        { text: "D. undefined", correct: false }
+      ]
+    },
+    {
+      question: "Which method is used to round a number to the nearest integer?",
+      options: [
+        { text: "A. Math.round()", correct: true },
+        { text: "B. Math.floor()", correct: false },
+        { text: "C. Math.ceil()", correct: false },
+        { text: "D. Math.random()", correct: false }
+      ]
+    },
+    {
+      question: "Which of the following is not a data type in JavaScript?",
+      options: [
+        { text: "A. String", correct: false },
+        { text: "B. Object", correct: false },
+        { text: "C. Number", correct: false },
+        { text: "D. Character", correct: true }
+      ]
+    },
+    {
+      question: "Which symbol is used for single-line comments in JavaScript?",
+      options: [
+        { text: "A. //", correct: true },
+        { text: "B. /*", correct: false },
+        { text: "C. #", correct: false },
+        { text: "D. --", correct: false }
+      ]
+    },
+    {
+      question: "How do you create a function in JavaScript?",
+      options: [
+        { text: "A. function myFunction()", correct: true },
+        { text: "B. func myFunction()", correct: false },
+        { text: "C. create function()", correct: false },
+        { text: "D. function: myFunction()", correct: false }
+      ]
+    },
+    {
+      question: "Which event is triggered when a user clicks on an element?",
+      options: [
+        { text: "A. onClick", correct: true },
+        { text: "B. onMouseOver", correct: false },
+        { text: "C. onFocus", correct: false },
+        { text: "D. onSubmit", correct: false }
+      ]
+    },
+    {
+      question: "Which of these is not an array method in JavaScript?",
+      options: [
+        { text: "A. map()", correct: false },
+        { text: "B. filter()", correct: false },
+        { text: "C. sort()", correct: false },
+        { text: "D. reverseEach()", correct: true }
+      ]
+    },
+    {
+      question: "What does the 'this' keyword refer to in JavaScript?",
+      options: [
+        { text: "A. The global object", correct: false },
+        { text: "B. The object that owns the method", correct: true },
+        { text: "C. The function itself", correct: false },
+        { text: "D. A reference to the event", correct: false }
+      ]
+    },
+    {
+      question: "Which of the following is used to check the type of a variable in JavaScript?",
+      options: [
+        { text: "A. typeOf()", correct: false },
+        { text: "B. typeof", correct: true },
+        { text: "C. instanceOf", correct: false },
+        { text: "D. checkType()", correct: false }
+      ]
+    },
+    {
+      question: "What is the result of '5' + 1 in JavaScript?",
+      options: [
+        { text: "A. 6", correct: false },
+        { text: "B. '51'", correct: true },
+        { text: "C. 5", correct: false },
+        { text: "D. Error", correct: false }
+      ]
+    },
+    {
+      question: "Which method is used to find the length of an array?",
+      options: [
+        { text: "A. size()", correct: false },
+        { text: "B. length()", correct: false },
+        { text: "C. getSize()", correct: false },
+        { text: "D. length", correct: true }
+      ]
+    },
+    {
+      question: "Which operator is used for assignment in JavaScript?",
+      options: [
+        { text: "A. =", correct: true },
+        { text: "B. ==", correct: false },
+        { text: "C. ===", correct: false },
+        { text: "D. :=", correct: false }
+      ]
+    },
+    {
+      question: "What is a closure in JavaScript?",
+      options: [
+        { text: "A. A function that refers to a variable outside of its scope", correct: true },
+        { text: "B. A function with no parameters", correct: false },
+        { text: "C. A variable that cannot be modified", correct: false },
+        { text: "D. A method that checks for null values", correct: false }
+      ]
+    },
+    {
+      question: "What is the purpose of the 'const' keyword in JavaScript?",
+      options: [
+        { text: "A. To declare a variable whose value cannot be reassigned", correct: true },
+        { text: "B. To declare a variable that can be reassigned", correct: false },
+        { text: "C. To create a function", correct: false },
+        { text: "D. To declare a global variable", correct: false }
+      ]
+    },
+    {
+      question: "Which of the following loops is guaranteed to execute at least once?",
+      options: [
+        { text: "A. for", correct: false },
+        { text: "B. while", correct: false },
+        { text: "C. do-while", correct: true },
+        { text: "D. foreach", correct: false }
+      ]
+    },
+    {
+      question: "How do you stop a loop from executing in JavaScript?",
+      options: [
+        { text: "A. exit", correct: false },
+        { text: "B. stop", correct: false },
+        { text: "C. break", correct: true },
+        { text: "D. continue", correct: false }
+      ]
+    }
+  ];
+
+  let currentQuestionIndex = 0;
+    let points = 0;
+
+    const questionCounter = document.getElementById("question-counter");
+    const questionText = document.getElementById("question-text");
+    const options = document.querySelectorAll(".quiz-option");
+    const submitButton = document.getElementById("submit-button");
+    const quizContainer = document.querySelector(".quiz-container");
+
+    function loadQuestion() {
+      const currentQuestion = questions[currentQuestionIndex];
+      questionCounter.innerText = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+      questionText.innerText = currentQuestion.question;
+      options.forEach((option, index) => {
+        option.innerText = currentQuestion.options[index].text;
+      });
+    }
+
+    loadQuestion();
+
+    submitButton.addEventListener("click", () => {
+      const selectedOption = Array.from(options).find(option => option.classList.contains("selected"));
+      
+      if (!selectedOption) {
+        alert("Please select an answer before submitting.");
+        return;
+      }
+
+      const answer = questions[currentQuestionIndex].options[Array.from(options).indexOf(selectedOption)];
+      if (answer.correct) {
+        points++;
+      }
+      currentQuestionIndex++;
+      
+      if (currentQuestionIndex < questions.length) {
+        loadQuestion();
+      } else {
+        quizContainer.innerHTML = `
+          <h2>Quiz Complete</h2>
+          <p>Your score: ${points} out of ${questions.length}</p>
+          <a href="#" onclick="window.location.reload();">Restart Quiz</a>
+        `;
+      }
+    });
+
+    options.forEach(option => {
+      option.addEventListener("click", () => {
+        options.forEach(opt => opt.classList.remove("selected"));
+        option.classList.add("selected");
+      });
+    });
+
+    function backTab() {
+        window.history.back();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Quiz</title>
+    <style>
+            *{
+                padding: 0;
+                margin: 0;
+                font-family: sans-serif;
+                box-sizing: border-box;
+            }
+
+            body{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                height: 100vh;
+                /* background-color:  #0d1b2a; */
+                background-color: #1C2B39;
+                color: #fff;
+            }
+
+            .contanier{
+                position: relative;
+                top: 66px;
+                display: flex;
+                justify-content: space-between;
+                width: 70%;
+                height: 70%;
+            }
+
+            .contanier .right h1{
+                font-size: 2.7rem;
+            }
+
+            .contanier .right h1 b{
+                font-weight: 800;
+            }
+
+            .contanier .right p{
+                position: relative;
+                top: 35px;
+                font-style: italic;
+                color: rgb(237, 237, 237);
+            }
+
+            .contanier .left{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .contanier .left .item{
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                padding-left: 15px;
+                background-color: #344557;
+                width: 350px;
+                height: 60px;
+                border-radius: 20px;
+                cursor: pointer;
+            }
+
+            .contanier .left .item i{
+                background-color: orange;
+                padding: 10px;
+                border-radius: 10px;
+                font-size: x-large;
+            }
+
+            .contanier .left .item p{
+                font-size: x-large;
+            }
+
+            a{
+                text-decoration: none;
+                color: #fff;
+            }
+
+            #back-btn{
+                position: absolute;
+                left: 10px;
+                top: 10px;
+                font-size: larger;
+                border: solid 1px red;
+                padding: 10px;
+                border-radius: 10px;
+            }
+
+            #back-btn:hover{
+                background-color: red;
+            }
+
+            @media screen and (max-width: 930px) {
+                .contanier{
+                    flex-direction: column;
+                }
+            }
+
+            @media screen and (max-width: 420px) {
+                .contanier .left .item{
+                    width: 250px;
+                }
+                .contanier .left{
+                    position: relative;
+                    top: 2rem;
+                    right: 2rem;
+                }
+                .contanier .right{
+                    position: relative;
+                    right: 2rem;
+                }
+            }
+    </style>
+</head>
+<body>
+
+    <a href="#" onclick="backTab()" id="back-btn">Back</a>
+    
+   <div class="contanier">
+       <div class="right"> 
+          <h1>Welcome to <br> <b>PROGAWI Quizes!</b></h1>
+          <p>Pick a language to get started.</p>
+       </div>
+       <div class="left">
+            <a href="HTML/index.html"><div class="item"><i class='bx bx-code-alt'></i> <p>HTML</p></div></a>
+            <a href="CSS/index.html"><div class="item"><i class='bx bx-popsicle'></i> <p>CSS</p></div></a>
+            <a href="JS/index.html"><div class="item"><i class='bx bxl-javascript'></i> <p>Java script</p></div></a>
+            <a href="#"><div class="item"><i class='bx bx-cog'></i> <p>Accessibilty</p></div></a>
+       </div>
+   </div>
+
+    <script>
+        function backTab() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

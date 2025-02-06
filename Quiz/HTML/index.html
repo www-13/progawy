@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility Quiz</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1C2B39;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .quiz-container {
+      background-color: #243447;
+      width: 90%;
+      max-width: 600px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      text-align: left;
+      height: 520px;
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .quiz-header h1 {
+      font-size: 20px;
+    }
+
+    .quiz-question {
+      margin-bottom: 20px;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .quiz-option {
+      background-color: #344557;
+      padding: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: left;
+      transition: background-color 0.3s;
+    }
+
+    .quiz-option:hover {
+      background-color: #4A617C;
+    }
+
+    .submit-button {
+      background-color: #6F4AE0;
+      color: white;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 16px;
+      width: 100%;
+      position: relative;
+      top: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    #back-btn{
+        border: solid 1px red;
+        padding: 10px;
+        border-radius: 10px;
+        transition: 0.5s;
+        color: #fff;
+    }
+
+    #back-btn:hover{
+        background-color: red;
+    }
+
+    @media screen and (max-width: 300px) {
+        .quiz-container{
+            height: 560px;
+        }
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <h1>HTML Quiz</h1>
+      <a id="back-btn" onclick="backTab()" href="#">Back</a>
+    </div>
+    <hr>
+    <div class="quiz-question">
+      <p><strong id="question-counter">Question 1 of 20</strong></p>
+      <h2 id="question-text">What does HTML stand for?</h2>
+    </div>
+    <div class="quiz-options">
+      <div class="quiz-option" data-answer="correct">A. Hyper Text Markup Language</div>
+      <div class="quiz-option" data-answer="wrong">B. Home Tool Markup Language</div>
+      <div class="quiz-option" data-answer="wrong">C. Hyperlinks and Text Markup Language</div>
+      <div class="quiz-option" data-answer="wrong">D. Hyper Tagging and Marking Language</div>
+    </div>
+    <button class="submit-button" id="submit-button">Submit answer</button>
+  </div>
+
+  <script>
+   const questions = [
+  { 
+    question: "What does HTML stand for?",
+    options: [
+      { text: "A. Hyper Text Markup Language", correct: true },
+      { text: "B. Home Tool Markup Language", correct: false },
+      { text: "C. Hyperlinks and Text Markup Language", correct: false },
+      { text: "D. Hyper Tagging and Marking Language", correct: false }
+    ]
+  },
+  {
+    question: "Which HTML tag is used to define a paragraph?",
+    options: [
+      { text: "A. <paragraph>", correct: false },
+      { text: "B. <p>", correct: true },
+      { text: "C. <pg>", correct: false },
+      { text: "D. <para>", correct: false }
+    ]
+  },
+  {
+    question: "What is the correct HTML element for the largest heading?",
+    options: [
+      { text: "A. <head>", correct: false },
+      { text: "B. <heading>", correct: false },
+      { text: "C. <h1>", correct: true },
+      { text: "D. <h6>", correct: false }
+    ]
+  },
+  {
+    question: "Which attribute is used to provide alternative text for an image?",
+    options: [
+      { text: "A. alt", correct: true },
+      { text: "B. src", correct: false },
+      { text: "C. title", correct: false },
+      { text: "D. href", correct: false }
+    ]
+  },
+  {
+    question: "What does the <title> element define?",
+    options: [
+      { text: "A. The page's main heading", correct: false },
+      { text: "B. The document's title in the browser tab", correct: true },
+      { text: "C. A title for images", correct: false },
+      { text: "D. The document's footer", correct: false }
+    ]
+  },
+  {
+    question: "Which tag is used to create a hyperlink in HTML?",
+    options: [
+      { text: "A. <a>", correct: true },
+      { text: "B. <link>", correct: false },
+      { text: "C. <href>", correct: false },
+      { text: "D. <hyperlink>", correct: false }
+    ]
+  },
+  {
+    question: "How can you open a link in a new tab or window?",
+    options: [
+      { text: "A. Add the target='_self' attribute", correct: false },
+      { text: "B. Add the target='_blank' attribute", correct: true },
+      { text: "C. Add the new='true' attribute", correct: false },
+      { text: "D. Add the rel='newtab' attribute", correct: false }
+    ]
+  },
+  {
+    question: "Which HTML element is used for line breaks?",
+    options: [
+      { text: "A. <break>", correct: false },
+      { text: "B. <lb>", correct: false },
+      { text: "C. <br>", correct: true },
+      { text: "D. <ln>", correct: false }
+    ]
+  },
+  {
+    question: "Which doctype declaration is correct for HTML5?",
+    options: [
+      { text: "A. <!DOCTYPE html>", correct: true },
+      { text: "B. <!DOCTYPE HTML5>", correct: false },
+      { text: "C. <!DOCTYPE document>", correct: false },
+      { text: "D. <!DOCTYPE HTML PUBLIC>", correct: false }
+    ]
+  },
+  {
+    question: "What does the <em> tag do?",
+    options: [
+      { text: "A. Makes text bold", correct: false },
+      { text: "B. Adds a horizontal line", correct: false },
+      { text: "C. Emphasizes text", correct: true },
+      { text: "D. Displays a quotation", correct: false }
+    ]
+  },
+  {
+    question: "Which attribute is used to uniquely identify an element?",
+    options: [
+      { text: "A. class", correct: false },
+      { text: "B. id", correct: true },
+      { text: "C. name", correct: false },
+      { text: "D. element", correct: false }
+    ]
+  },
+  {
+    question: "How do you add comments in HTML?",
+    options: [
+      { text: "A. <!-- Comment -->", correct: true },
+      { text: "B. // Comment", correct: false },
+      { text: "C. /* Comment */", correct: false },
+      { text: "D. <comment>", correct: false }
+    ]
+  },
+  {
+    question: "Which HTML attribute specifies the URL of a linked document?",
+    options: [
+      { text: "A. src", correct: false },
+      { text: "B. href", correct: true },
+      { text: "C. link", correct: false },
+      { text: "D. url", correct: false }
+    ]
+  },
+  {
+    question: "Which element is used to create a dropdown list?",
+    options: [
+      { text: "A. <dropdown>", correct: false },
+      { text: "B. <input type='dropdown'>", correct: false },
+      { text: "C. <select>", correct: true },
+      { text: "D. <option>", correct: false }
+    ]
+  },
+  {
+    question: "What does the <strong> tag do?",
+    options: [
+      { text: "A. Displays italicized text", correct: false },
+      { text: "B. Makes text bold", correct: true },
+      { text: "C. Highlights text", correct: false },
+      { text: "D. Adds emphasis", correct: false }
+    ]
+  },
+  {
+    question: "How can you set the background color in HTML?",
+    options: [
+      { text: "A. Using the bgcolor attribute", correct: true },
+      { text: "B. Using the color attribute", correct: false },
+      { text: "C. Using the bg attribute", correct: false },
+      { text: "D. Using the style attribute", correct: false }
+    ]
+  },
+  {
+    question: "Which element is used for adding metadata to an HTML document?",
+    options: [
+      { text: "A. <meta>", correct: true },
+      { text: "B. <link>", correct: false },
+      { text: "C. <style>", correct: false },
+      { text: "D. <data>", correct: false }
+    ]
+  },
+  {
+    question: "Which element is used to define a table row?",
+    options: [
+      { text: "A. <tr>", correct: true },
+      { text: "B. <td>", correct: false },
+      { text: "C. <row>", correct: false },
+      { text: "D. <table-row>", correct: false }
+    ]
+  },
+  {
+    question: "What is the purpose of the <head> tag?",
+    options: [
+      { text: "A. To define the visible content", correct: false },
+      { text: "B. To contain metadata and links to resources", correct: true },
+      { text: "C. To define the main heading", correct: false },
+      { text: "D. To define navigation links", correct: false }
+    ]
+  },
+  {
+    question: "Which attribute is used to make an input field mandatory?",
+    options: [
+      { text: "A. required", correct: true },
+      { text: "B. mandatory", correct: false },
+      { text: "C. validate", correct: false },
+      { text: "D. mustfill", correct: false }
+    ]
+  }
+];
+
+
+    let currentQuestionIndex = 0;
+    let points = 0;
+
+    const questionCounter = document.getElementById("question-counter");
+    const questionText = document.getElementById("question-text");
+    const optionsContainer = document.querySelector(".quiz-options");
+    const submitButton = document.getElementById("submit-button");
+
+    function loadQuestion() {
+      const currentQuestion = questions[currentQuestionIndex];
+      questionText.textContent = currentQuestion.question;
+      questionCounter.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+
+      optionsContainer.innerHTML = ""; // Clear previous options
+
+      currentQuestion.options.forEach((option, index) => {
+        const optionDiv = document.createElement("div");
+        optionDiv.classList.add("quiz-option");
+        optionDiv.textContent = option.text;
+        optionDiv.dataset.correct = option.correct;
+
+        optionDiv.addEventListener("click", () => {
+          document.querySelectorAll(".quiz-option").forEach(option => {
+            option.classList.remove("selected");
+          });
+          optionDiv.classList.add("selected");
+        });
+
+        optionsContainer.appendChild(optionDiv);
+      });
+    }
+
+    submitButton.addEventListener("click", () => {
+      const selectedOption = document.querySelector(".quiz-option.selected");
+
+      if (!selectedOption) {
+        alert("Please select an answer!");
+        return;
+      }
+
+      if (selectedOption.dataset.correct === "true") {
+        points++;
+      }
+
+      currentQuestionIndex++;
+
+      if (currentQuestionIndex < questions.length) {
+        loadQuestion();
+      } else {
+        document.querySelector(".quiz-container").innerHTML = `<h2>You scored ${points} out of ${questions.length}!</h2>`;
+      }
+    });
+
+    loadQuestion();
+
+    function backTab(){
+        window.history.back();
+    }
+  </script>
+</body>
+</html>

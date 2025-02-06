@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Quiz</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1C2B39;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .quiz-container {
+      background-color: #243447;
+      width: 90%;
+      max-width: 600px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      text-align: left;
+      height: 520px;
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .quiz-header h1 {
+      font-size: 20px;
+    }
+
+    .quiz-question {
+      margin-bottom: 20px;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .quiz-option {
+      background-color: #344557;
+      padding: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: left;
+      transition: background-color 0.3s;
+    }
+
+    .quiz-option:hover {
+      background-color: #4A617C;
+    }
+
+    .submit-button {
+      background-color: #6F4AE0;
+      color: white;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 16px;
+      width: 100%;
+      position: relative;
+      top: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    #back-btn{
+        border: solid 2px red;
+        padding: 10px;
+        border-radius: 10px;
+        transition: 0.5s;
+        color: #fff;
+    }
+
+    #back-btn:hover{
+        background-color: red;
+        
+    }
+
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <h1>CSS Quiz</h1>
+      <a onclick="backTab()" id="back-btn" href="#">Back</a>
+    </div>
+    <hr>
+    <div class="quiz-question">
+      <p><strong id="question-counter">Question 1 of 20</strong></p>
+      <h2 id="question-text">What does CSS stand for?</h2>
+    </div>
+    <div class="quiz-options">
+      <div class="quiz-option" data-answer="correct">A. Cascading Style Sheets</div>
+      <div class="quiz-option" data-answer="wrong">B. Creative Style Sheets</div>
+      <div class="quiz-option" data-answer="wrong">C. Computer Style Sheets</div>
+      <div class="quiz-option" data-answer="wrong">D. Colorful Style Sheets</div>
+    </div>
+    <button class="submit-button" id="submit-button">Submit answer</button>
+  </div>
+
+  <script>
+    const questions = [
+  { 
+    question: "What does CSS stand for?",
+    options: [
+      { text: "A. Cascading Style Sheets", correct: true },
+      { text: "B. Creative Style Sheets", correct: false },
+      { text: "C. Computer Style Sheets", correct: false },
+      { text: "D. Colorful Style Sheets", correct: false }
+    ]
+  },
+  {
+    question: "Which property is used to change the background color?",
+    options: [
+      { text: "A. color", correct: false },
+      { text: "B. background-color", correct: true },
+      { text: "C. bgcolor", correct: false },
+      { text: "D. bg-color", correct: false }
+    ]
+  },
+  {
+    question: "Which property controls the text size?",
+    options: [
+      { text: "A. font-style", correct: false },
+      { text: "B. font-size", correct: true },
+      { text: "C. text-size", correct: false },
+      { text: "D. text-style", correct: false }
+    ]
+  },
+  {
+    question: "How do you add a comment in CSS?",
+    options: [
+      { text: "A. // this is a comment", correct: false },
+      { text: "B. <!-- this is a comment -->", correct: false },
+      { text: "C. /* this is a comment */", correct: true },
+      { text: "D. # this is a comment", correct: false }
+    ]
+  },
+  {
+    question: "Which property is used to align text to the center?",
+    options: [
+      { text: "A. text-decoration", correct: false },
+      { text: "B. text-align", correct: true },
+      { text: "C. align-center", correct: false },
+      { text: "D. text-position", correct: false }
+    ]
+  },
+  {
+    question: "How do you make a list not display bullet points?",
+    options: [
+      { text: "A. list-style: none;", correct: true },
+      { text: "B. text-decoration: none;", correct: false },
+      { text: "C. bullet-style: none;", correct: false },
+      { text: "D. display: none;", correct: false }
+    ]
+  },
+  {
+    question: "Which property is used to change the font of text?",
+    options: [
+      { text: "A. font-style", correct: false },
+      { text: "B. font-family", correct: true },
+      { text: "C. text-font", correct: false },
+      { text: "D. typeface", correct: false }
+    ]
+  },
+  {
+    question: "How do you specify that an element should float to the right?",
+    options: [
+      { text: "A. position: right;", correct: false },
+      { text: "B. align: right;", correct: false },
+      { text: "C. float: right;", correct: true },
+      { text: "D. text-align: right;", correct: false }
+    ]
+  },
+  {
+    question: "Which property is used to add spacing between letters?",
+    options: [
+      { text: "A. letter-spacing", correct: true },
+      { text: "B. spacing", correct: false },
+      { text: "C. word-spacing", correct: false },
+      { text: "D. text-spacing", correct: false }
+    ]
+  },
+  {
+    question: "How do you set the width of an element to occupy the full width of its container?",
+    options: [
+      { text: "A. width: 100%;", correct: true },
+      { text: "B. width: full;", correct: false },
+      { text: "C. width: container;", correct: false },
+      { text: "D. width: fit;", correct: false }
+    ]
+  },
+  {
+    question: "What is the default value of the position property?",
+    options: [
+      { text: "A. fixed", correct: false },
+      { text: "B. relative", correct: false },
+      { text: "C. static", correct: true },
+      { text: "D. absolute", correct: false }
+    ]
+  },
+  {
+    question: "Which property is used to change the text color?",
+    options: [
+      { text: "A. text-color", correct: false },
+      { text: "B. color", correct: true },
+      { text: "C. font-color", correct: false },
+      { text: "D. background-color", correct: false }
+    ]
+  },
+  {
+    question: "How do you make text bold in CSS?",
+    options: [
+      { text: "A. font-weight: bold;", correct: true },
+      { text: "B. text-style: bold;", correct: false },
+      { text: "C. font-bold: true;", correct: false },
+      { text: "D. font-size: bold;", correct: false }
+    ]
+  },
+  {
+    question: "Which CSS property is used to create space inside an element’s border?",
+    options: [
+      { text: "A. padding", correct: true },
+      { text: "B. margin", correct: false },
+      { text: "C. border-spacing", correct: false },
+      { text: "D. spacing", correct: false }
+    ]
+  },
+  {
+    question: "Which CSS property is used to set the transparency of an element?",
+    options: [
+      { text: "A. visibility", correct: false },
+      { text: "B. opacity", correct: true },
+      { text: "C. transparent", correct: false },
+      { text: "D. filter", correct: false }
+    ]
+  },
+  {
+    question: "How do you link a CSS file to an HTML document?",
+    options: [
+      { text: "A. <css-link>", correct: false },
+      { text: "B. <link rel='stylesheet' href='style.css'>", correct: true },
+      { text: "C. <style href='style.css'>", correct: false },
+      { text: "D. <stylesheet>style.css</stylesheet>", correct: false }
+    ]
+  },
+  {
+    question: "Which property is used to add an image as the background?",
+    options: [
+      { text: "A. background-image", correct: true },
+      { text: "B. background-url", correct: false },
+      { text: "C. bg-image", correct: false },
+      { text: "D. img-background", correct: false }
+    ]
+  },
+  {
+    question: "What does the z-index property specify?",
+    options: [
+      { text: "A. The order of elements in a flex container", correct: false },
+      { text: "B. The stack order of elements", correct: true },
+      { text: "C. The zoom level of an element", correct: false },
+      { text: "D. The depth of an element", correct: false }
+    ]
+  },
+  {
+    question: "How do you make a grid layout in CSS?",
+    options: [
+      { text: "A. display: block;", correct: false },
+      { text: "B. display: grid;", correct: true },
+      { text: "C. display: flex;", correct: false },
+      { text: "D. display: inline-grid;", correct: false }
+    ]
+  },
+  {
+    question: "Which property specifies the space outside the element’s border?",
+    options: [
+      { text: "A. margin", correct: true },
+      { text: "B. padding", correct: false },
+      { text: "C. spacing", correct: false },
+      { text: "D. border-spacing", correct: false }
+    ]
+  }
+];
+
+
+    let currentQuestionIndex = 0;
+    let points = 0;
+
+    const questionCounter = document.getElementById("question-counter");
+    const questionText = document.getElementById("question-text");
+    const optionsContainer = document.querySelector(".quiz-options");
+    const submitButton = document.getElementById("submit-button");
+
+    function loadQuestion() {
+      const currentQuestion = questions[currentQuestionIndex];
+      questionText.textContent = currentQuestion.question;
+      questionCounter.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+
+      optionsContainer.innerHTML = "";
+
+      currentQuestion.options.forEach((option, index) => {
+        const optionDiv = document.createElement("div");
+        optionDiv.classList.add("quiz-option");
+        optionDiv.textContent = option.text;
+        optionDiv.dataset.correct = option.correct;
+
+        optionDiv.addEventListener("click", () => {
+          document.querySelectorAll(".quiz-option").forEach(option => {
+            option.classList.remove("selected");
+          });
+          optionDiv.classList.add("selected");
+        });
+
+        optionsContainer.appendChild(optionDiv);
+      });
+    }
+
+    submitButton.addEventListener("click", () => {
+      const selectedOption = document.querySelector(".quiz-option.selected");
+
+      if (!selectedOption) {
+        alert("Please select an answer!");
+        return;
+      }
+
+      if (selectedOption.dataset.correct === "true") {
+        points++;
+      }
+
+      currentQuestionIndex++;
+
+      if (currentQuestionIndex < questions.length) {
+        loadQuestion();
+      } else {
+        document.querySelector(".quiz-container").innerHTML = `<h2>You scored ${points} out of ${questions.length}!</h2>`;
+      }
+    });
+
+    loadQuestion();
+
+    function backtab() {
+        window.history.back();
+    }
+  </script>
+</body>
+</html>

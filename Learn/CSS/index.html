@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Learning Resources</title>
+    <style>
+         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            color: #2c3e50;
+            background-color: #ffffff;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #ffffff; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f7f7f7;
+            color: #2980b9;
+            font-size: 1.1rem;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1; 
+        }
+
+        a {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #e74c3c;
+            text-decoration: underline;
+        }
+
+        /*  responsive */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            table {
+                width: 100%;
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 12px;
+            }
+        }
+
+        #back-btn{
+            position: relative;
+            left: 10px;
+            top: 10px;
+            font-size: larger;
+            border-radius: 10px;
+            padding: 7px;
+            border-radius: solid 2px red;
+            color: red;
+            transition: 0.5s;
+        }
+
+        #back-btn:hover{
+            background-color: red;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <a onclick="backTab()" id="back-btn" href="#">Back</a>
+    <h1>CSS Learning Resources</h1>
+    <table>
+        <tr>
+            <th>Website</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS">Mozilla Developer Network (MDN) Web Docs</a></td>
+            <td>Comprehensive documentation and tutorials for CSS</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.w3schools.com/css/">W3Schools CSS Tutorial</a></td>
+            <td>Interactive tutorials and examples for CSS</td>
+        </tr>
+        <tr>
+            <td><a href="https://css-tricks.com/">CSS-Tricks</a></td>
+            <td>Resource for learning CSS with articles, guides, and tutorials</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.freecodecamp.org/learn/responsive-web-design/basic-css/">FreeCodeCamp CSS Tutorial</a></td>
+            <td>CSS tutorial as part of the FreeCodeCamp curriculum</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.codecademy.com/learn/learn-css">Codecademy CSS Course</a></td>
+            <td>Interactive CSS course on Codecademy's platform</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.youtube.com/user/TechGuyWeb">Traversy Media YouTube Channel</a></td>
+            <td>YouTube channel with web development tutorials, including CSS</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.youtube.com/channel/UCW5YeuERMmlnqo4oq8vwUpg">The Net Ninja YouTube Channel</a></td>
+            <td>YouTube channel with tutorials on web development technologies</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.youtube.com/channel/UCSJbGtTlrDami-tDGPUV9-w">Academind YouTube Channel</a></td>
+            <td>YouTube channel covering various programming and web development topics</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.youtube.com/user/programmingwithmosh">Programming with Mosh YouTube Channel</a></td>
+            <td>YouTube channel with programming tutorials, including CSS</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.youtube.com/user/derekbanas">Derek Banas YouTube Channel</a></td>
+            <td>YouTube channel with tutorials on various programming languages</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.coursera.org/learn/html-css-javascript-for-web-developers">Coursera HTML, CSS, and JavaScript for Web Developers</a></td>
+            <td>Online course on Coursera covering HTML, CSS, and JavaScript</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.udemy.com/course/the-complete-web-developer-course-2/">Udemy The Complete Web Developer Course 2.0</a></td>
+            <td>Comprehensive web development course on Udemy's platform</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.edx.org/course/html5-and-css-fundamentals">edX HTML5 and CSS Fundamentals</a></td>
+            <td>Online course on edX covering HTML5 and CSS basics</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.linkedin.com/learning/html-essential-training">LinkedIn Learning HTML Essential Training</a></td>
+            <td>HTML training course on LinkedIn Learning platform</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.pluralsight.com/courses/html-fundamentals">Pluralsight HTML Fundamentals</a></td>
+            <td>HTML fundamentals course on Pluralsight</td>
+        </tr>
+        <tr>
+            <td><a href="https://codepen.io/">CodePen</a></td>
+            <td>Online community for testing and showcasing HTML, CSS, and JavaScript code snippets</td>
+        </tr>
+        <tr>
+            <td><a href="https://jsfiddle.net/">JSFiddle</a></td>
+            <td>Online code editor for testing HTML, CSS, and JavaScript code snippets</td>
+        </tr>
+        <tr>
+            <td><a href="https://glitch.com/">Glitch</a></td>
+            <td>Platform for building and hosting web applications with HTML, CSS, and JavaScript</td>
+        </tr>
+        <tr>
+            <td><a href="https://stackblitz.com/">StackBlitz</a></td>
+            <td>Online IDE for web development with support for HTML, CSS, and JavaScript</td>
+        </tr>
+        <tr>
+            <td><a href="https://replit.com/">Repl.it</a></td>
+            <td>Online coding platform supporting multiple programming languages, including HTML</td>
+        </tr>
+        <tr>
+            <td><a href="https://syntax.fm/">Syntax.fm</a></td>
+            <td>Podcast by Wes Bos and Scott Tolinski covering web development topics</td>
+        </tr>
+        <tr>
+            <td><a href="https://htmlallthethings.com/podcast">HTML All The Things</a></td>
+            <td>Podcast discussing HTML and web development trends and technologies</td>
+        </tr>
+    </table>
+
+
+    <script>
+        function backTab() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
